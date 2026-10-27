@@ -10,553 +10,47 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Courier New', monospace;
-}
-
-body {
-background-color: #001a00;
-color: #00ff00;
-font-size: 1.1rem;
-line-height: 1.6;
-padding: 20px;
-min-height: 100vh;
-overflow-x: hidden;
-position: relative;
-}
-
-#particles-js {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: 0;
-pointer-events: none;
-}
-
-body::before {
-content: "";
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(rgba(0, 255, 0, 0.03) 50%, transparent 50%);
-background-size: 100% 4px;
-pointer-events: none;
-z-index: 1000;
-opacity: 0.3;
-}
-
-.container {
-max-width: 1400px;
-margin: 0 auto;
-background-color: rgba(0, 34, 0, 0.9);
-border: 3px solid #00aa00;
-border-radius: 15px;
-padding: 30px;
-box-shadow: 0 0 50px rgba(0, 255, 0, 0.4);
-position: relative;
-z-index: 2;
-}
-
-.header {
-text-align: center;
-margin-bottom: 50px;
-padding-bottom: 30px;
-border-bottom: 2px dashed #00aa00;
-}
-
-.logo {
-font-size: 4.5rem;
-font-weight: bold;
-color: #00ff00;
-text-shadow: 0 0 15px #00ff00, 0 0 30px rgba(0, 255, 0, 0.5);
-cursor: pointer;
-transition: all 0.3s;
-display: inline-block;
-margin-bottom: 15px;
-letter-spacing: 5px;
-padding: 15px 30px;
-border-radius: 15px;
-background: rgba(0, 50, 0, 0.3);
-border: 3px solid transparent;
-}
-
-.logo:hover {
-text-shadow: 0 0 25px #00ff00;
-transform: scale(1.05);
-border-color: #00ff00;
-}
-
-.logo .it {
-color: #ffffff;
-background: linear-gradient(45deg, #005500, #008800);
-padding: 10px 20px;
-border-radius: 10px;
-margin-right: 15px;
-}
-
-.logo .global {
-letter-spacing: 12px;
-background: linear-gradient(90deg, #00aa00, #00ff00, #00aa00);
--webkit-background-clip: text;
-background-clip: text;
-color: transparent;
-}
-
-.tagline {
-font-size: 1.4rem;
-color: #00cc00;
-font-style: italic;
-margin-top: 15px;
-}
-
-/* Каталог сервисов */
-.services-grid {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 50px;
-margin: 60px 0;
-padding: 30px;
-justify-items: center;
-align-items: center;
-}
-
-.service-card {
-width: 220px;
-height: 280px;
-background: linear-gradient(145deg, #002200, #004400);
-border: 4px solid #00aa00;
-border-radius: 20px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-padding: 15px;
-cursor: pointer;
-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-position: relative;
-overflow: hidden;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-opacity: 0;
-transform: translateY(60px) scale(0.3) rotate(180deg);
-}
-
-.service-card.visible {
-opacity: 1;
-transform: translateY(0) scale(1) rotate(0deg);
-}
-
-.service-card:hover {
-transform: translateY(-20px) rotateY(15deg) scale(1.08);
-box-shadow: 0 25px 50px rgba(0, 255, 0, 0.6);
-border-color: #00ff00;
-}
-
-.service-card::before {
-content: "";
-position: absolute;
-top: -2px;
-left: -2px;
-right: -2px;
-bottom: -2px;
-background: linear-gradient(45deg, #00ff00, #003300, #00ff00);
-z-index: -1;
-border-radius: 22px;
-opacity: 0;
-transition: opacity 0.4s;
-}
-
-.service-card:hover::before {
-opacity: 0.4;
-}
-
-.service-icon {
-width: 90px;
-height: 90px;
-object-fit: contain;
-margin-bottom: 10px;
-filter: drop-shadow(0 0 12px #00ff00);
-transition: transform 0.3s;
-}
-
-.service-card:hover .service-icon {
-transform: scale(1.15) rotate(5deg);
-}
-
-.service-title {
-font-weight: bold;
-color: #ffffff;
-font-size: 1.4rem;
-margin-bottom: 4px;
-text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
-}
-
-.service-desc {
-font-size: 0.8rem;
-color: #00cc00;
-line-height: 1.3;
-margin-bottom: 8px;
-}
-
-.service-btn {
-background: linear-gradient(90deg, #008800, #00aa00);
-color: white;
-border: none;
-padding: 8px 15px;
-border-radius: 8px;
-font-size: 0.8rem;
-cursor: pointer;
-width: 100%;
-margin-top: 5px;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 8px;
-border: 1px solid #00ff00;
-transition: all 0.3s;
-}
-
-.service-btn:hover {
-background: linear-gradient(90deg, #00aa00, #00ff00);
-transform: translateY(-2px);
-}
-
-.description {
-background: rgba(0, 30, 0, 0.5);
-border-radius: 15px;
-padding: 30px;
-margin: 50px 0;
-border-left: 6px solid #00aa00;
-text-align: center;
-}
-
-.description h2 {
-color: #00ff00;
-font-size: 2.2rem;
-margin-bottom: 20px;
-text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-}
-
-.description p {
-font-size: 1.3rem;
-color: #00cc00;
-max-width: 900px;
-margin: 0 auto 25px;
-line-height: 1.8;
-}
-
-footer {
-margin-top: 60px;
-padding-top: 30px;
-border-top: 2px dashed #00aa00;
-color: #00aa00;
-position: relative;
-}
-
-footer::before {
-content: "[IT-GLOBAL-CATALOG]";
-position: absolute;
-top: -15px;
-left: 50%;
-transform: translateX(-50%);
-background: #001a00;
-padding: 0 20px;
-font-size: 1rem;
-color: #00aa00;
-}
-
-.social-section {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 30px;
-margin-bottom: 30px;
-}
-
-.social-card {
-background: rgba(0, 40, 0, 0.4);
-border-radius: 15px;
-padding: 25px;
-border: 2px solid #00aa00;
-text-align: center;
-transition: all 0.3s;
-}
-
-.social-card:hover {
-border-color: #00ff00;
-transform: translateY(-5px);
-box-shadow: 0 10px 25px rgba(0, 255, 0, 0.3);
-}
-
-.social-icon {
-font-size: 3rem;
-margin-bottom: 15px;
-display: block;
-}
-
-.telegram .social-icon { color: #0088cc; }
-.whatsapp .social-icon { color: #25D366; }
-.youtube .social-icon { color: #FF0000; }
-
-.social-title {
-color: #00ff00;
-font-size: 1.5rem;
-margin-bottom: 10px;
-}
-
-.social-link {
-display: inline-block;
-background: rgba(0, 60, 0, 0.5);
-color: #00cc00;
-padding: 12px 25px;
-border-radius: 10px;
-text-decoration: none;
-margin-top: 10px;
-transition: all 0.3s;
-border: 1px solid #00aa00;
-}
-
-.social-link:hover {
-background: rgba(0, 80, 0, 0.7);
-color: #00ff00;
-border-color: #00ff00;
-text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-}
-
-.copyright {
-text-align: center;
-padding-top: 20px;
-border-top: 1px solid #00aa00;
-font-size: 1rem;
-color: #00aa00;
-}
-
-.instructions {
-text-align: center;
-color: #00cc00;
-font-size: 1.2rem;
-margin-top: 30px;
-padding: 15px;
-background: rgba(0, 40, 0, 0.3);
-border-radius: 10px;
-border: 1px dashed #00aa00;
-}
-
-.mobile-menu-btn {
-display: none;
-position: fixed;
-top: 20px;
-right: 20px;
-background: #00aa00;
-color: #001a00;
-border: none;
-border-radius: 50%;
-width: 60px;
-height: 60px;
-font-size: 1.5rem;
-z-index: 9999;
-cursor: pointer;
-box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-}
-
-.mobile-menu-btn:hover {
-background: #00ff00;
-transform: scale(1.1);
-}
-
-@media (max-width: 1200px) {
-.services-grid {
-grid-template-columns: repeat(3, 1fr);
-gap: 40px;
-}
-.service-card {
-width: 200px;
-height: 260px;
-}
-.service-icon {
-width: 85px;
-height: 85px;
-}
-.logo {
-font-size: 3.8rem;
-}
-}
-
-@media (max-width: 992px) and (orientation: landscape) {
-.services-grid {
-grid-template-columns: repeat(3, 1fr);
-gap: 30px;
-}
-.service-card {
-width: 180px;
-height: 240px;
-}
-.service-icon {
-width: 80px;
-height: 80px;
-}
-.logo {
-font-size: 3.2rem;
-}
-.social-section {
-grid-template-columns: repeat(2, 1fr);
-}
-}
-
-@media (max-width: 768px) {
-.services-grid {
-grid-template-columns: repeat(2, 1fr);
-gap: 30px;
-padding: 20px;
-}
-.service-card {
-width: 180px;
-height: 240px;
-}
-.service-icon {
-width: 80px;
-height: 80px;
-}
-.logo {
-font-size: 2.8rem;
-letter-spacing: 4px;
-padding: 10px 20px;
-}
-.logo .global {
-letter-spacing: 8px;
-}
-body {
-padding: 10px;
-}
-.container {
-padding: 20px;
-}
-.description h2 {
-font-size: 1.8rem;
-}
-.description p {
-font-size: 1.1rem;
-}
-.social-section {
-grid-template-columns: 1fr;
-}
-.mobile-menu-btn {
-display: block;
-}
-}
-
-@media (max-width: 600px) and (orientation: portrait) {
-.services-grid {
-grid-template-columns: 1fr;
-gap: 25px;
-margin: 30px 0;
-}
-.service-card {
-width: 280px;
-height: 300px;
-margin: 0 auto;
-}
-.service-icon {
-width: 100px;
-height: 100px;
-}
-.service-title {
-font-size: 1.6rem;
-}
-.service-desc {
-font-size: 1rem;
-}
-.service-btn {
-padding: 10px 15px;
-font-size: 1rem;
-}
-.logo {
-font-size: 2.2rem;
-letter-spacing: 3px;
-padding: 10px 20px;
-}
-.logo .global {
-letter-spacing: 5px;
-}
-.tagline {
-font-size: 1.1rem;
-padding: 0 10px;
-}
-.description {
-padding: 20px;
-margin: 30px 0;
-}
-.description h2 {
-font-size: 1.6rem;
-}
-.description p {
-font-size: 1rem;
-line-height: 1.6;
-}
-.instructions {
-font-size: 1rem;
-margin-top: 20px;
-padding: 12px;
-}
-}
-
-@media (min-width: 1600px) {
-.container {
-max-width: 1600px;
-padding: 40px;
-}
-.services-grid {
-grid-template-columns: repeat(5, 1fr);
-gap: 60px;
-margin: 80px 0;
-}
-.service-card {
-width: 250px;
-height: 300px;
-}
-.service-icon {
-width: 120px;
-height: 120px;
-}
-.service-title {
-font-size: 1.6rem;
-}
-.service-desc {
-font-size: 1rem;
-}
-.logo {
-font-size: 5rem;
-letter-spacing: 8px;
-}
-.logo .global {
-letter-spacing: 16px;
-}
-.tagline {
-font-size: 1.6rem;
-}
-.description h2 {
-font-size: 2.5rem;
-}
-.description p {
-font-size: 1.5rem;
-max-width: 1200px;
-}
-}
-
-@media (min-width: 2000px) {
-.services-grid {
-grid-template-columns: repeat(5, 1fr);
-}
-body::before {
-background-size: 100% 6px;
-}
-}
+:root{color-scheme:dark;--bg:#07111f;--panel:#0d1b2b;--panel2:#10243a;--line:rgba(150,190,230,.15);--text:#f1f6fc;--muted:#9aadc2;--blue:#2587f7;--cyan:#45c5e8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 15% 0%,#123c4c 0,transparent 35%),radial-gradient(ellipse at 90% 15%,#172d54 0,transparent 35%),var(--bg);color:var(--text);min-height:100vh;line-height:1.6;padding:32px 22px}
+#particles-js,body::before{display:none}
+.container{max-width:1240px;margin:0 auto;background:rgba(8,19,32,.76);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,56px);box-shadow:0 28px 100px rgba(0,0,0,.28);position:relative}
+.header{text-align:left;margin-bottom:34px;padding-bottom:28px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:24px}
+.logo{display:flex;align-items:center;cursor:default;margin:0;padding:0;background:none;border:0;letter-spacing:0;transition:transform .2s}
+.logo:hover{transform:translateY(-2px);border:0;text-shadow:none}
+.logo img{display:block;width:clamp(68px,9vw,104px);height:auto;object-fit:contain}
+.tagline{font-size:clamp(1rem,2vw,1.35rem);font-style:normal;color:var(--muted);margin:0}
+.services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:36px 0;padding:0;align-items:stretch}
+.service-card{width:100%;min-height:270px;height:auto;padding:26px;background:linear-gradient(145deg,rgba(19,42,64,.92),rgba(12,27,43,.92));border:1px solid var(--line);border-radius:20px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;cursor:pointer;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.12);opacity:1;transform:none}
+.service-card.visible{opacity:1;transform:none}
+.service-card:hover{transform:translateY(-5px);border-color:rgba(69,197,232,.55);box-shadow:0 18px 38px rgba(0,0,0,.24)}
+.service-card::before{display:none}
+.service-icon{width:64px;height:64px;object-fit:contain;margin-bottom:22px;filter:none;transition:transform .2s}
+.service-card:hover .service-icon{transform:scale(1.04)}
+.service-title{font-weight:650;color:var(--text);font-size:1.25rem;margin-bottom:5px;text-shadow:none}
+.service-desc{font-size:.92rem;color:var(--muted);line-height:1.5;margin-bottom:20px}
+.service-btn{margin-top:auto;width:auto;min-width:132px;padding:10px 16px;border-radius:11px;background:var(--blue);color:white;border:1px solid transparent;font-size:.9rem;font-weight:600;gap:10px;transition:background .2s,transform .2s}
+.service-btn:hover{background:#1673df;transform:translateY(-1px)}
+.description{background:rgba(15,35,54,.7);border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:18px;padding:clamp(22px,3vw,38px);margin:44px 0;text-align:left}
+.description h2{color:var(--text);font-size:clamp(1.45rem,3vw,2rem);margin-bottom:12px;text-shadow:none}
+.description p{font-size:1rem;color:var(--muted);max-width:900px;margin:0 0 12px;line-height:1.75}
+.instructions{font-size:.9rem;color:var(--muted);margin-top:24px;padding:12px 16px;background:rgba(20,40,60,.5);border:1px solid var(--line);border-radius:12px;text-align:center}
+footer{margin-top:44px;padding-top:28px;border-top:1px solid var(--line);color:var(--muted);position:relative}
+footer::before{content:"";display:none}
+.social-section{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:28px}
+.social-card{background:rgba(15,35,54,.7);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:left;transition:transform .2s,border-color .2s}
+.social-card:hover{border-color:rgba(69,197,232,.45);transform:translateY(-3px);box-shadow:none}
+.social-icon{font-size:1.8rem;margin-bottom:12px;display:block}
+.telegram .social-icon{color:#0088cc}.whatsapp .social-icon{color:#25D366}.youtube .social-icon{color:#FF0000}
+.social-title{color:var(--text);font-size:1.1rem;margin-bottom:6px}
+.social-card p{font-size:.9rem;color:var(--muted)}
+.social-link{display:inline-block;background:rgba(37,135,247,.12);color:#83c1ff;padding:9px 12px;border-radius:9px;text-decoration:none;margin-top:14px;transition:background .2s;border:1px solid rgba(37,135,247,.2);font-size:.9rem}
+.social-link:hover{background:rgba(37,135,247,.22);color:#b5d9ff;border-color:rgba(37,135,247,.4);text-shadow:none}
+.copyright{text-align:center;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+.mobile-menu-btn{display:none}
+@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.social-section{grid-template-columns:1fr}.container{padding:24px}}
+@media(max-width:560px){body{padding:12px}.container{padding:18px;border-radius:20px}.header{align-items:flex-start;gap:15px;margin-bottom:24px}.logo img{width:58px}.tagline{font-size:.95rem}.services-grid{grid-template-columns:1fr;gap:12px;margin:24px 0}.service-card{min-height:0;padding:20px}.service-icon{width:56px;height:56px;margin-bottom:15px}.description{margin:28px 0;padding:22px}.social-section{gap:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -569,7 +63,7 @@ background-size: 100% 6px;
 <div class="container">
 <div class="header">
 <div class="logo" id="mainLogo">
-<span class="it">IT</span><span class="global">GLOBAL</span>
+<img src="https://i.ibb.co/RGwsyRKQ/66100-B28-1778-4261-8728-2-B97-E4-DFB454.png" alt="IT Global">
 </div>
 <p class="tagline">>_ Каталог цифровых сервисов IT Global</p>
 </div>
@@ -649,7 +143,7 @@ id: 1,
 name: "IT Global",
 title: "Главный портал",
 description: "Официальный сайт компании. Кубики GloBIT, каталоги готовых работ, заказ решений.",
-iconUrl: "https://i.ibb.co/Kx87PPcL/C17-F5-A20-5-C74-4-B6-E-9-C90-705-C0-F164-CEE.jpg",
+iconUrl: "https://i.ibb.co/RGwsyRKQ/66100-B28-1778-4261-8728-2-B97-E4-DFB454.png",
 url: "https://saryanich.github.io/IT-Global/",
 badge: "Портал"
 },
@@ -739,22 +233,14 @@ card.classList.add('visible');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-initParticles();
+// Particle animation removed for a cleaner, professional interface.
 createServices();
 
 document.getElementById('mobileMenuBtn').addEventListener('click', () => {
 document.querySelector('.services-grid').scrollIntoView({ behavior: 'smooth' });
 });
 
-document.getElementById('mainLogo').addEventListener('click', () => {
-document.querySelectorAll('.service-card').forEach((card, i) => {
-setTimeout(() => {
-card.style.transform = 'translateY(-30px)';
-setTimeout(() => { card.style.transform = 'translateY(0)'; }, 300);
-}, i * 100);
-});
-document.getElementById('mainLogo').style.transform = 'scale(1.1)';
-setTimeout(() => document.getElementById('mainLogo').style.transform = 'scale(1)', 300);
+// Logo is now a static brand mark.
 });
 });
 </script>
